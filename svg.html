@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        svg {
+            background:lightblue;
+        }
+        rect {
+            fill: #c0ffee;
+        }
+        line {
+            stroke: #000;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+            <li>Hi mom</li>
+        </ul>
+    </nav>
+    <svg viewBox="100 0 200 100">
+        <rect x="100" y="0" width="50" height="50"/>
+        <line x1="100" y1="0" x2="110" y2="100" />
+    </svg>
+    <script>
+        
+        var tl = new TimelineMax({paused:true});
+        
+        tl
+            .staggerTo('li', 3, {
+                x:function(){
+                    return Math.random()*400
+                },
+                y:function(){
+                    return Math.random()*400
+                },
+                rotation: function(){
+                    return Math.random()*180-90
+                },
+                ease: Elastic.easeIn.config(1, 0.3)
+            }, 0.1)
+            
+            .to('rect', 2, {
+                y:20
+            }, "-=1")
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>

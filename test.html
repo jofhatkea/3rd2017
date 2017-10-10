@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .bar {
+            height: 20px;
+            background-color: lightblue;
+            width: 0;
+            border-radius: 50%;
+            transition: all 2s;
+        }
+        #articles {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #articles article {
+            margin-right: 30px;
+        }
+        article {
+            background-color: yellow;
+        }
+        article:nth-child(3n) {
+            background-color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Hi mom</h1>
+    <section id="articles">
+        
+    </section>
+    <template id="bananaTemplate">
+        <article>
+            <h1>COUNTRY</h1>
+            <div class="bar"></div>
+        </article>
+    </template>
+    
+    <script>
+        fetch("test.php")
+            .then(function(firstReply){
+                return firstReply.json();
+            })
+            .then(function(data){
+                showStuff(data)
+            })
+        function showStuff(data){
+            console.log(data)
+            data.forEach(showCountry)
+        }
+        
+        function showCountry(country, number){
+            console.log(country);
+            var template = document.querySelector("#bananaTemplate").content;
+            var clone = template.cloneNode(true);
+            
+            clone.querySelector('h1').textContent = country.countryname;
+            //clone.querySelector('p').textContent = country.sales;
+           var bar = clone.querySelector("div");
+            setTimeout(function(){
+                bar.style.width = country.sales + "px";    
+                bar.style.height = country.sales + "px"; 
+                bar.style.backgroundColor = "hsl("+country.sales+", 50%, 50%)";
+            }, 1000)
+            
+           
+            
+            var parent = document.querySelector("#articles");
+            
+            parent.appendChild(clone);
+            
+        }
+        
+        /*
+        //searching everything
+        var myTemplate = document.querySelector("#articleTemplate").content;
+        console.log(myTemplate)
+        var myClone = myTemplate.cloneNode(true);
+        console.log(myClone);
+        
+        //search within the clone
+        var header = myClone.querySelector('h1');
+        header.textContent = "Good morning";
+        
+        myClone.querySelector('.body').textContent = "Are you there?";
+        
+        myClone.querySelector('p').innerHTML = "<h2>This is a header</h2>";
+        
+        var daddy = document.querySelector('#articles');
+        daddy.appendChild(myClone);
+        */
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>
